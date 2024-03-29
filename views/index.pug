@@ -1,0 +1,21 @@
+extends layout
+
+block content
+  h1= title
+  p Welcome to #{title} 
+  p Created this project as part of Webapplications Lab 10
+  button(type="button", class="btn btn-secondary",onclick="double()") I am a button
+  br
+  br
+  div#double Up the amount
+  br
+  br
+  a(href="/heritagesites") Heritagesites Page
+  script.
+    var value = 0,power = 1;
+
+    function double() {
+        value = value + 1;
+        power = power * 2;
+        document.getElementById('double').innerText = "Two to the power " + value + " is " + power;
+    }

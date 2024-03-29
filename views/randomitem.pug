@@ -1,0 +1,14 @@
+extends layout
+
+block content
+  h1= title
+  p Welcome to #{title}
+
+  - var image_names = ["Charminar.jpg", "JM.jpg", "RF.jpg", "SVP.jpg", "Taj.jpg"]
+
+  // Loop to display 3 random images
+  - for (let i = 0; i < 3; i++)
+    // Get a random index to select an image from image_names array
+    - let randomIndex = Math.floor(Math.random() * image_names.length)
+    // Display the image
+    img(src=`/images/${image_names[randomIndex]}`, alt=`Image ${randomIndex + 1}`, height="300", width="300")

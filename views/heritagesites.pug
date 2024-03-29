@@ -1,0 +1,25 @@
+extends layout
+
+block content
+  h1= title
+  p Welcome to #{title}
+
+  .container-fluid
+    .row
+      - let results = []
+      - results.push({ name: "Charminar", location: "Hyderabad", description: "Built at the time of nawabs", visitors: 200000, rating: 4.5 })
+      - results.push({ name: "Taj Mahal", location: "Agra", description: "This is one of the 7 wonders in the world", visitors: 10000000, rating: 4.9 })
+      - results.push({ name: "Sardarvallabai Patel", location: "Ahmedabad", description: "Tallest statue in the world", visitors: 70000, rating: 4.3 })
+      - results.push({ name: "Water palace", location: "Jaipur", description: "The palace is build inside the water", visitors: 500000, rating: 4.4})
+      - results.push({ name: "Red Fort", location: "Delhi", description: "On Independence day first flag will be hosted at Redfort", visitors: 4600000, rating: 4.9})
+
+      each item, index in results
+        .col-sm-2(onclick=`buy(${index})`)
+          h3 #{item.name}
+          p Location: #{item.location}
+          p Description: #{item.description}
+
+  script.
+    function buy(index) {
+      alert(`You purchased item ${index}`);
+    }
