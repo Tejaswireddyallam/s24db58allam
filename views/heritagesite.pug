@@ -10,9 +10,9 @@ block content
 
       each item, index in items
         .col-sm-2(onclick=`buy(${index})`)
-          h3 #{item.name}
+          h3 Name: #{item.heritagesite_name}
           p Location: #{item.location}
-          p Description: #{item.description}
+          p Rating: #{item.rating}
 
   script.
     function buy(index) {
