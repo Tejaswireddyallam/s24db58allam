@@ -22,9 +22,20 @@ exports.heritagesite_view_all_Page = async function(req, res) {
     } 
    };
 // for a specific Costume.
-exports.heritagesite_detail = function(req, res) {
- res.send('NOT IMPLEMENTED: Heritagesite detail: ' + req.params.id);
-};
+//exports.heritagesite_detail = function(req, res) {
+// res.send('NOT IMPLEMENTED: Heritagesite detail: ' + req.params.id);
+//};
+exports.heritagesite_detail = async function(req, res) {
+    console.log("detail" + req.params.id)
+    try {
+    result = await heritagesite.findById( req.params.id)
+    res.send(result)
+    } catch (error) {
+    res.status(500)
+    res.send(`{"error": document for id ${req.params.id} not found`);
+    }
+   };
+   
 // Handle Costume create on POST.
 exports.heritagesite_create_post = async function(req, res) {
     console.log(req.body)
@@ -50,6 +61,25 @@ exports.heritagesite_delete = function(req, res) {
  res.send('NOT IMPLEMENTED: Heritagesite delete DELETE ' + req.params.id);
 };
 // Handle Costume update form on PUT.
-exports.heritagesite_update_put = function(req, res) {
- res.send('NOT IMPLEMENTED: Heritagesite update PUT' + req.params.id);
-};
+//exports.heritagesite_update_put = function(req, res) {
+ //res.send('NOT IMPLEMENTED: Heritagesite update PUT' + req.params.id);
+//};
+exports.heritagesite_update_put = async function(req, res) {
+    console.log(`update on id ${req.params.id} with body 
+   ${JSON.stringify(req.body)}`)
+    try {
+    let toUpdate = await heritagesite.findById( req.params.id)
+    // Do updates of properties
+    if(req.body.heritagesite_name) 
+    toUpdate.heritagesite_name = req.body.heritagesite_name;
+    if(req.body.location) toUpdate.location = req.body.location;
+    if(req.body.rating) toUpdate.rating = req.body.rating;
+    let result = await toUpdate.save();
+    console.log("Sucess " + result)
+    res.send(result)
+    } catch (err) {
+    res.status(500)
+    res.send(`{"error": ${err}: Update for id ${req.params.id} 
+   failed`);
+    }
+   };
