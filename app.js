@@ -11,7 +11,7 @@ mongoose.connect(connectionString);
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-var heritageRouter = require('./routes/heritagesites');
+var heritageRouter = require('./routes/heritagesite');
 var gridRouter = require('./routes/grid');
 var pickRouter = require('./routes/pick');
 var hertiagesite = require("./models/heritagesite");
@@ -31,7 +31,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-app.use('/heritagesites', heritageRouter);
+app.use('/heritagesite', heritageRouter);
 app.use('/grid', gridRouter);
 app.use('/pick', pickRouter);
 app.use('/resource', resourceRouter);
@@ -54,7 +54,7 @@ app.use(function(err, req, res, next) {
 // We can seed the collection if needed on server start
 async function recreateDB(){
  // Delete everything
- await hertiagesite.deleteMany();
+ await hertiagesite.deleteMany({}, { maxTimeMS: 30000 }); // 30 seconds timeout
  let instance1 = new 
  hertiagesite({heritagesite_name:"Tajmahal", location:'Agra', 
 rating:4.4});
