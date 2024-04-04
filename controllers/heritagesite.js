@@ -14,7 +14,7 @@ exports.heritagesite_list = async function(req, res) {
 exports.heritagesite_view_all_Page = async function(req, res) {
     try{
     theheritagesite = await heritagesite.find();
-    res.render('heritagesite', { title: 'Costume Search Results', results: theheritagesite });
+    res.render('heritagesite', { title: 'Heritagesite Search Results', results: theheritagesite });
     }
     catch(err){
     res.status(500);
