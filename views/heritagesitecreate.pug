@@ -1,0 +1,31 @@
+extends layout
+block content
+  h1= title
+  form(id='HeritagesiteForm', action="/resource/heritagesite", method="POST")
+    div.form-group
+      label.heritagesiteAttr(for='heritagesite_name') Heritagesite name
+      input#heritagesite_name(type='text', name='heritagesite_name')
+    div.form-group
+      label.heritagesiteAttr(for='location') Heritagesite Location
+      input#location(type='text', name='location')
+    div.form-group
+      label.heritagesiteAttr(for='rating') Heritagesite Rating
+      input#rating(type='number', name='rating')
+    input(type="submit")
+  script.
+    document.forms['HeritagesiteForm'].addEventListener('submit', (event) => {
+      event.preventDefault();
+      // TODO do something here to show user that form is being submitted
+      fetch(event.target.action, {
+        method: 'POST',
+        body: new URLSearchParams(new FormData(event.target)) // event.target is the form
+      }).then((resp) => {
+        return resp.json(); // or resp.text() or whatever the server sends
+      }).then((body) => {
+        alert("Save succeeded")
+        // TODO handle body
+      }).catch((error) => {
+        // TODO handle error
+        alert("Save failed " + error)
+      });
+    });
