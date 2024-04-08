@@ -57,9 +57,21 @@ exports.heritagesite_create_post = async function(req, res) {
     } 
    }
 // Handle Costume delete from on DELETE.
-exports.heritagesite_delete = function(req, res) {
- res.send('NOT IMPLEMENTED: Heritagesite delete DELETE ' + req.params.id);
-};
+//exports.heritagesite_delete = function(req, res) {
+ //res.send('NOT IMPLEMENTED: Heritagesite delete DELETE ' + req.params.id);
+//};
+exports.heritagesite_delete = async function(req, res) {
+    console.log("delete " + req.params.id)
+    try {
+    result = await heritagesite.findByIdAndDelete( req.params.id)
+    console.log("Removed " + result)
+    res.send(result)
+    } catch (err) {
+    res.status(500)
+    res.send(`{"error": Error deleting ${err}}`);
+    }
+   };
+   
 // Handle Costume update form on PUT.
 //exports.heritagesite_update_put = function(req, res) {
  //res.send('NOT IMPLEMENTED: Heritagesite update PUT' + req.params.id);
@@ -81,5 +93,19 @@ exports.heritagesite_update_put = async function(req, res) {
     res.status(500)
     res.send(`{"error": ${err}: Update for id ${req.params.id} 
    failed`);
+    }
+   };
+
+   // Handle a show one view with id specified by query
+exports.heritagesite_view_one_Page = async function(req, res) {
+    console.log("single view for id " + req.query.id)
+    try{
+    result = await heritagesite.findById( req.query.id)
+    res.render('heritagesitedetail', 
+   { title: 'Heritagesite Detail', toShow: result });
+    }
+    catch(err){
+    res.status(500)
+    res.send(`{'error': '${err}'}`);
     }
    };

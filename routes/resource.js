@@ -17,4 +17,6 @@ router.put('/heritagesite/:id', heritagesite_controller.heritagesite_update_put)
 router.get('/heritagesite/:id', heritagesite_controller.heritagesite_detail);
 // GET request for list of all heritagesite items.
 router.get('/heritagesite', heritagesite_controller.heritagesite_list);
+/* GET detail costume page */
+//router.get('/detail', heritagesite_controller.heritagesite_view_one_Page);
 module.exports = router;

@@ -1,0 +1,24 @@
+extends layout
+
+block content
+  h1= title
+  if toShow
+    - let heritagesiteid = toShow._id
+    - let heritagesite_name = toShow.heritagesite_name
+    - let heritagesitelocation = toShow.location
+    - let heritagesiterating = toShow.rating
+    div
+      div.row
+        div(class='heritagesiteAttr mr-3') Heritage Site ID is:
+        div #{heritagesiteid}
+      div.row
+        div(class='heritagesiteAttr mr-3') Heritage Site Name is:
+        div #{heritagesite_name}
+      div.row
+        div(class='heritagesiteAttr mr-3') Heritage Site Location is:
+        div #{heritagesitelocation}
+      div.row
+        div(class='heritagesiteAttr mr-3') Heritage Site Rating is:
+        div #{heritagesiterating}
+  else
+    p No heritage site found.
