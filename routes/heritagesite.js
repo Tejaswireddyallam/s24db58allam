@@ -7,4 +7,6 @@ router.get('/', heritagesite_controlers.heritagesite_view_all_Page );
 /* GET detail costume page */
 router.get('/detail', heritagesite_controlers.heritagesite_view_one_Page);
 router.get('/create', heritagesite_controlers.heritagesite_create_Page);
+router.get('/update', heritagesite_controlers.heritagesite_update_Page);
+
 module.exports = router;

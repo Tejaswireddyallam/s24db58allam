@@ -1,0 +1,42 @@
+extends layout
+block content
+  h1= title
+  - let heritagesiteid = toShow._id
+  - let heritagesite_name = toShow.heritagesite_name
+  - let heritagesitelocation = toShow.location
+  - let heritagesiterating = toShow.rating
+ 
+  div.row(class='mb-2')
+    div.mr-1 ID is
+    div #{heritagesiteid}
+
+  - let actionid = "/resource/heritagesite/" + heritagesiteid
+  form(id='heritagesiteForm', action= actionid, method="PUT")
+    div.form-group
+      label.heritagesiteAttr(for='heritagesite_name') Heritagesite Name
+      input#heritagesite_name(type='text', name='heritagesite_name', value= heritagesite_name )
+    div.form-group
+      label.heritagesiteAttr(for='location') Heritagesite Location
+      input#location(type='text', name='location', value= heritagesitelocation )
+    div.form-group
+      label.heritagesiteAttr(for='rating') Heritagesite Rating
+      input#rating(type='number', name='rating', value= heritagesiterating )
+    input(type="submit")
+  
+  script.
+    document.forms['heritagesiteForm'].addEventListener('submit', (event) => {
+      event.preventDefault();
+      // TODO do something here to show user that form is being submitted
+      fetch(event.target.action, {
+        method: 'PUT',
+        body: new URLSearchParams(new FormData(event.target)) // event.target is the form
+      }).then((resp) => {
+        return resp.json(); // or resp.text() or whatever the server sends
+      }).then((body) => {
+        alert("Update succeeded")
+        // TODO handle body
+      }).catch((error) => {
+        // TODO handle error
+        alert("Update failed " + error )
+      });
+    });
