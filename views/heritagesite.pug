@@ -4,17 +4,18 @@ block content
   h1= title
   p Welcome to #{title}
 
+  // Displaying items
   .container-fluid
-    .row
-      - let items = results 
-
+    .row.m-1
+      - let items = results
       each item, index in items
         .col-sm-2(onclick=`buy(${index})`)
           h3 Name: #{item.heritagesite_name}
           p Location: #{item.location}
           p Rating: #{item.rating}
+          button.btn.btn-primary.ml-1(onclick=`dispatch("/heritagesite/update?id=${item._id}")`) Update
 
   script.
-    function buy(index) {
-      alert(`You purchased item ${index}`);
+    function dispatch(path){
+      window.location.href = path;
     }
