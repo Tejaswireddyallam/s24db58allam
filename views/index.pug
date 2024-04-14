@@ -1,21 +1,11 @@
 extends layout
-
 block content
-  h1= title
-  p Welcome to #{title} 
-  p Created this project as part of Webapplications Lab 10
-  button(type="button", class="btn btn-secondary",onclick="double()") I am a button
-  br
-  br
-  div#double Up the amount
-  br
-  br
-  a(href="/heritagesites") Heritagesites Page
-  script.
-    var value = 0,power = 1;
-
-    function double() {
-        value = value + 1;
-        power = power * 2;
-        document.getElementById('double').innerText = "Two to the power " + value + " is " + power;
-    }
+  if (!user)
+    a(href="/login") Login
+    br
+    a(href="/register") Register
+  if (user)
+    p You are currently logged in as #{user.username}
+    a(href="/heritagesite") Take me to Heritagesites
+    br
+    a(href="/logout") Logout
