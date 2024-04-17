@@ -26,7 +26,7 @@ const heritagesiteSchema = mongoose.Schema({
     rating: {
         type: Number,
        // min: [0, 'Rating must be at least 0'], 
-       // max: [10, 'Rating must be at most 10'], 
+       //max: [10, 'Rating must be at most 10'], 
        //required: true
     }
 });
