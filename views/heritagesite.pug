@@ -4,6 +4,9 @@ block content
   h1= title
   p Welcome to #{title}
 
+  // Button to navigate to the create page
+  a.btn.btn-primary.mb-3(href="/heritagesite/create") Create New Heritagesite
+
   // Displaying items
   .container-fluid
     .row.m-1
@@ -14,6 +17,12 @@ block content
           p Location: #{item.location}
           p Rating: #{item.rating}
           button.btn.btn-primary.ml-1(onclick=`dispatch("/heritagesite/update?id=${item._id}")`) Update
+          br
+          br
+          button.btn.btn-primary.ml-1(onclick=`dispatch("/heritagesite/detail?id=${item._id}")`) Detail view
+          br
+          br
+          button.btn.btn-primary.ml-1(onclick=`dispatch("/heritagesite/delete?id=${item._id}")`) Delete page
 
   script.
     function dispatch(path){
