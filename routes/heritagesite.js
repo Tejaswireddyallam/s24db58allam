@@ -12,10 +12,10 @@ router.get('/', heritagesite_controlers.heritagesite_view_all_Page );
 //router.get('/heritagesite/:id', heritagesite_controlers.heritagesite_detail);
 /* GET detail costume page */
 router.get('/detail', heritagesite_controlers.heritagesite_view_one_Page);
-router.get('/create', heritagesite_controlers.heritagesite_create_Page);
+router.get('/create',secured, heritagesite_controlers.heritagesite_create_Page);
 //router.get('/update', heritagesite_controlers.heritagesite_update_Page);
 router.get('/update', secured, heritagesite_controlers.heritagesite_update_Page);
-router.get('/delete', heritagesite_controlers.heritagesite_delete_Page);
+router.get('/delete', secured,heritagesite_controlers.heritagesite_delete_Page);
 
 
 module.exports = router;
