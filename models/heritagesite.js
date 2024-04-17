@@ -13,14 +13,14 @@ const heritagesiteSchema = mongoose.Schema({
         type: String,
         required: true, // Ensure the field is required
         minlength: [3, 'Heritage site name must be at least 3 characters'], 
-        maxlength: [15, 'Heritage site name must be at most 50 characters'], 
+        maxlength: [15, 'Heritage site name must be at most 15 characters'], 
         trim: true // Trim whitespace from the input
     },
     location: {
         type: String,
         required: true,
         minlength: [3, 'Location must be at least 3 characters'],
-        maxlength: [10, 'Location must be at most 100 characters'],
+        maxlength: [10, 'Location must be at most 10 characters'],
         trim: true
     },
     rating: {
